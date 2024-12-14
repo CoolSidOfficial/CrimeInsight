@@ -1,5 +1,5 @@
 from joblib import load 
-import pandas as pd
+import pandas as pd 
 loaded=load("CrimeInsight-pre.joblib")
 
 cities_names={'Agra':0, 'Ahmedabad':1, 'Bangalore':2, 'Bhopal':3, 'Chennai':4, 'Delhi':5,
@@ -29,5 +29,6 @@ if __name__=="__main__":
    total_min=hours*60+minutes
     
    data=pd.DataFrame([[inp_city,inp_age,inp_gender,total_min]],columns=["City","Victim Age","Victim Gender","Time"])
-   final_data=loaded.predict(data)
-   print(f"According to data you can be victim of {crimes_index["final_data"}")
+   final_data=int(loaded.predict(data).item())
+
+   print(f"According to data you can be victim of {crimes_index[final_data]}")
