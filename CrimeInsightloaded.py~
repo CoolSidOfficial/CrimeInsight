@@ -1,0 +1,33 @@
+from joblib import load 
+import pandas as pd
+loaded=load("CrimeInsight-pre.joblib")
+
+cities_names={'Agra':0, 'Ahmedabad':1, 'Bangalore':2, 'Bhopal':3, 'Chennai':4, 'Delhi':5,
+              'Faridabad':6, 'Ghaziabad':7, 'Hyderabad':8, 'Indore':9, 'Jaipur':10,
+              'Kalyan':11, 'Kanpur':12, 'Kolkata':13, 'Lucknow':14, 'Ludhiana':15, 'Meerut':16,
+              'Mumbai':17, 'Nagpur':18, 'Nashik':19, 'Patna':20, 'Pune':21, 'Rajkot':22,
+              'Srinagar':23, 'Surat':24, 'Thane':25, 'Varanasi':25, 'Vasai':26, 'Visakhapatnam':27}
+
+crimes_index={'ARSON':0, 'ASSAULT':1, 'BURGLARY':2, 'COUNTERFEITING':3, 'CYBERCRIME':4,
+              'DOMESTIC VIOLENCE':5, 'DRUG OFFENSE':6, 'EXTORTION':7,
+              'FIREARM OFFENSE':8, 'FRAUD':9, 'HOMICIDE':10, 'IDENTITY THEFT':11,
+              'ILLEGAL POSSESSION':12, 'KIDNAPPING':13, 'PUBLIC INTOXICATION':14,
+              'ROBBERY':15, 'SEXUAL ASSAULT':16, 'SHOPLIFTING':17, 'TRAFFIC VIOLATION':18,
+              'VANDALISM':19, 'VEHICLE - STOLEN':20}
+if __name__=="__main__":
+   for name,index in cities_names.items():
+       print(f"[{index}]{name}")
+   print("please enter the  city index")
+   inp_city=int(input(">]]"))
+   print("Please  enter the age")
+   inp_age=int(input(">]]"))
+   print("please choose the gender")
+   inp_gender=int(input("0 for female or 1 or male or 2 for x >]]"))
+   print("please enter  the time")
+   inp_time=input("2:00 in 24 hrs format>>]")
+   hours,minutes=map(int,inp_time.split(":"))
+   total_min=hours*60+minutes
+    
+   data=pd.DataFrame([[inp_city,inp_age,inp_gender,total_min]],columns=["City","Victim Age","Victim Gender","Time"])
+   final_data=loaded.predict(data)
+   print(final_data)
